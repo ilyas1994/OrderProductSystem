@@ -19,6 +19,7 @@ public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, IEnume
         return await _baseLogic.BaseRepo()
             .GetQueryable<DicProducts>()
             .Where(x => x.DeleteDate == null)
+            .AsNoTracking()
             .ToListAsync(cancellationToken: cancellationToken);
     }
 }
